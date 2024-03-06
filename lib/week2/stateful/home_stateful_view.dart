@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:training/week2/core/component/card/user_card.dart';
 import 'package:training/week2/core/component/opacity/image_opacity.dart';
 import 'package:training/week2/core/enum/duration_enum.dart';
 import 'package:training/week2/core/image_manager.dart';
+import 'package:training/week2/stateful/model/user.dart';
+import 'package:training/week2/stateless/home_detail_stateless.dart';
 
 class HomeViewStateful extends StatefulWidget {
   const HomeViewStateful({super.key});
@@ -13,11 +16,13 @@ class HomeViewStateful extends StatefulWidget {
 class _HomeViewStatefulState extends State<HomeViewStateful> {
   bool _isLoading = true;
   late final ImageManager imageManager;
+  late final User user;
   @override
   void initState() {
     super.initState();
     _waitForLoading();
     imageManager = ImageManager();
+    user = User.fakeItem();
   }
 
   Future<void> _waitForLoading() async {
@@ -40,7 +45,21 @@ class _HomeViewStatefulState extends State<HomeViewStateful> {
         children: [
           _isLoading ? const CircularProgressIndicator() : const FlutterLogo(),
           ImageOpacity(url: imageManager.randomImage),
+          UserCard(
+            user: user,
+            onPressed: () {
+              navigateDetail();
+            },
+          )
         ],
+      ),
+    );
+  }
+
+  void navigateDetail() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => HomeDetail(model: user),
       ),
     );
   }

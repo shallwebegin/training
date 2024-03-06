@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:training/week2/core/enum/duration_enum.dart';
-import 'package:training/week2/core/image_manager.dart';
 
 class ImageOpacity extends StatefulWidget {
   final String url;
@@ -11,10 +10,11 @@ class ImageOpacity extends StatefulWidget {
 }
 
 class _ImageOpacityState extends State<ImageOpacity> {
-  bool _isOpacity = false;
+  bool _isOpacity = true;
   @override
   void initState() {
     super.initState();
+    waitForTime();
   }
 
   Future<void> waitForTime() async {
