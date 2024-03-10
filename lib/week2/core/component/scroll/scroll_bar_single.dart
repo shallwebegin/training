@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ScrollBarSingle extends StatelessWidget {
-  final Widget child;
   const ScrollBarSingle({super.key, required this.child});
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

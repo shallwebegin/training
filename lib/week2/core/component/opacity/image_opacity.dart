@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:training/week2/core/enum/duration_enum.dart';
+import 'package:training/week2/core/enums/duration_enums.dart';
+import 'package:training/week2/core/image_manager.dart';
 
 class ImageOpacity extends StatefulWidget {
-  final String url;
   const ImageOpacity({super.key, required this.url});
+  final String url;
 
   @override
   State<ImageOpacity> createState() => _ImageOpacityState();
@@ -18,7 +19,7 @@ class _ImageOpacityState extends State<ImageOpacity> {
   }
 
   Future<void> waitForTime() async {
-    await Future.delayed(DurationEnum.NORMAL.time);
+    await Future.delayed(DurationEnums.medium.time);
     setState(() {
       _isOpacity = !_isOpacity;
     });
@@ -29,9 +30,8 @@ class _ImageOpacityState extends State<ImageOpacity> {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: opacityValue,
-      duration: DurationEnum.HIGH.time,
-      child: Image.network(widget.url),
-    );
+        opacity: opacityValue,
+        duration: DurationEnums.high.time,
+        child: Image.network(widget.url));
   }
 }

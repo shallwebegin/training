@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:training/week2/core/component/card/user_card.dart';
 import 'package:training/week2/core/component/opacity/image_opacity.dart';
-import 'package:training/week2/core/enum/duration_enum.dart';
+import 'package:training/week2/core/enums/duration_enums.dart';
 import 'package:training/week2/core/image_manager.dart';
 import 'package:training/week2/stateful/model/user.dart';
-import 'package:training/week2/stateless/home_detail_stateless.dart';
+import 'package:training/week2/stateless/home_detail.dart';
 
-class HomeViewStateful extends StatefulWidget {
-  const HomeViewStateful({super.key});
+class HomeViewStatefull extends StatefulWidget {
+  const HomeViewStatefull({super.key});
 
   @override
-  State<HomeViewStateful> createState() => _HomeViewStatefulState();
+  State<HomeViewStatefull> createState() => _HomeViewStatefullState();
 }
 
-class _HomeViewStatefulState extends State<HomeViewStateful> {
+class _HomeViewStatefullState extends State<HomeViewStatefull> {
   bool _isLoading = true;
   late final ImageManager imageManager;
   late final User user;
+
   @override
   void initState() {
     super.initState();
-    _waitForLoading();
+    waitForLoading();
     imageManager = ImageManager();
-    user = User.fakeItem();
-  }
-
-  Future<void> _waitForLoading() async {
-    await Future.delayed(DurationEnum.NORMAL.time);
-    setState(() {
-      _isLoading = !_isLoading;
-    });
+    user = User.fakeItems();
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Future<void> waitForLoading() async {
+    await Future.delayed(DurationEnums.low.time);
+    setState(() {
+      _isLoading = !_isLoading;
+    });
   }
 
   @override
@@ -48,7 +49,7 @@ class _HomeViewStatefulState extends State<HomeViewStateful> {
           UserCard(
             user: user,
             onPressed: () {
-              navigateDetail();
+              navigateToDetail();
             },
           )
         ],
@@ -56,10 +57,10 @@ class _HomeViewStatefulState extends State<HomeViewStateful> {
     );
   }
 
-  void navigateDetail() {
+  void navigateToDetail() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => HomeDetail(model: user),
+        builder: (context) => HomeDetailScreen(user: user),
       ),
     );
   }
