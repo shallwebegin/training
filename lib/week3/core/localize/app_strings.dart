@@ -9,4 +9,11 @@ class AppStrings {
   AppStrings._init();
 
   final String cardTitle = 'Card';
+
+  final String checkOut = 'CheckOut';
+
+  final String subTotal = 'Sub-total';
+
+  final String delivery = 'Delivery';
+  final String total = 'Total';
 }

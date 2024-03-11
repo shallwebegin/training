@@ -17,10 +17,12 @@ class LightTheme extends ITheme {
   ThemeData get data => ThemeData(
         appBarTheme: _LightTheme.appBarTheme
             .copyWith(backgroundColor: Colors.white, centerTitle: true),
+        textTheme: _LightTheme.textTheme.apply(bodyColor: colors.lynch),
         colorScheme: _LightTheme.colorScheme.copyWith(
           primary: Colors.white,
           onPrimary: colors.lynch,
           secondary: Colors.green,
+          onSecondary: colors.catSkillWhite,
         ),
       );
 }
